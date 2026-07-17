@@ -11,6 +11,7 @@ function App() {
   
   const [collections, setCollections] = useState([]);
   const [newItems, setNewItems] = useState([]);
+  const [topSellers, setTopSellers] = useState([]);
   const [allItems, setAllItems] = useState([]);
 
   async function getCollections(){
@@ -29,6 +30,14 @@ function App() {
     setNewItems(newItemRequestJSON);
   }
 
+  async function getTopSellers(){
+    console.log("Fetching new items");
+    let sellersRequest = await fetch("https://us-central1-nft-cloud-functions.cloudfunctions.net/topSellers");
+    let sellersRequestJSON = await sellersRequest.json();
+    //console.log(newItemRequestJSON);
+    setTopSellers(sellersRequestJSON);
+  }
+
   async function getAllItems(){
     let collectionRequest = await fetch("https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections");
     let collectionRequestJSON = await collectionRequest.json();
@@ -41,9 +50,11 @@ function App() {
   useEffect(() => {
     setTimeout(() => {
       getCollections();
+      getNewItems();
+      getTopSellers();
     }, 1000);
 
-    getNewItems();
+    
     
   }, [])
   
@@ -51,7 +62,7 @@ function App() {
     <Router>
       <Nav />
       <Routes>
-        <Route path="/" element={<Home collections = {collections} newItems = {newItems} />} />
+        <Route path="/" element={<Home collections = {collections} newItems = {newItems} topSellers={topSellers} />} />
         <Route path="/explore" element={<Explore />} />
         <Route path="/author" element={<Author />} />
         <Route path="/item-details/:id" element={<ItemDetails getAllItems = {getAllItems} allItems = {allItems} getCollections = {getCollections} getNewItems = {getNewItems} newItems = {newItems} collections = {collections} />} />

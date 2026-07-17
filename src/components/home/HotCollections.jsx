@@ -56,7 +56,6 @@ const HotCollections = (props) => {
           </div>
           <div className="slider-container">
             <Slider {...settings}>
-              
               {
                 props.collections.length > 0?
                     props.collections.map((collection, index) => {

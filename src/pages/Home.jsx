@@ -19,7 +19,7 @@ const Home = (props) => {
         <LandingIntro />
         <HotCollections collections={props.collections} />
         <NewItems newItems = {props.newItems} />
-        <TopSellers />
+        <TopSellers topSellers = {props.topSellers} />
         <BrowseByCategory />
       </div>
     </div>

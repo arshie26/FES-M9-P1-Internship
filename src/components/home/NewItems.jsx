@@ -3,11 +3,46 @@ import { Link } from "react-router-dom";
 import Countdown from '../home/Countdown'
 import AuthorImage from "../../images/author_thumbnail.jpg";
 import nftImage from "../../images/nftImage.jpg";
+import './NewItems.css'
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const NewItems = (props) => {
 
-  //const [remainingTime, setRemainingTime] = useState(0);
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    nextArrow: <SampleNextArrow />,
+    prevArrow: <SamplePrevArrow />
+  };
 
+  const skeleton = Array(4).fill(null);
+
+  function SampleNextArrow(props) {
+    const { className, style, onClick } = props;
+    return (
+      <div
+        className={className}
+        style={{ ...style, display: "block", color: "#727272" }}
+        onClick={onClick}
+      />
+    );
+  }
+  
+  function SamplePrevArrow(props) {
+    const { className, style, onClick } = props;
+    return (
+      <div
+        className={className}
+        style={{ ...style, display: "block", color: "#727272" }}
+        onClick={onClick}
+      />
+    );
+  }
 
   return (
     <section id="section-items" className="no-bottom">
@@ -19,10 +54,14 @@ const NewItems = (props) => {
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
-          {props.newItems.map((newItem, index) => {
+          <div className="slider-container">
+            <Slider {...settings}>
+          {
+          props.newItems.length > 0 ?
 
+            props.newItems.map((newItem, index) => {
             return (
-            <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
+            <div className="col" key={index}>
               <div className="nft__item">
                 <div className="author_list_pp">
                   <Link
@@ -76,7 +115,62 @@ const NewItems = (props) => {
                 </div>
               </div>
             </div>
-        )})}
+            )})
+            :
+            skeleton.map((_,index) => {
+              return (
+              <div className="col" key={index}>
+                <div className="nft__item">
+                  <div className="author_list_pp">
+                    <Link
+                      to="/author"
+                      data-bs-toggle="tooltip"
+                      data-bs-placement="top"
+                      title="Creator: Monica Lucas"
+                      className="newItems__skeleton--headshot"
+                      >
+                      
+                      <i className="fa fa-check"></i>
+                    </Link>
+                  </div>
+                  
+
+                  <div className="nft__item_wrap">
+                    <div className="nft__item_extra">
+                      <div className="nft__item_buttons">
+                        <button>Buy Now</button>
+                        <div className="nft__item_share">
+                          <h4>Share</h4>
+                          <a href="" target="_blank" rel="noreferrer">
+                            <i className="fa fa-facebook fa-lg"></i>
+                          </a>
+                          <a href="" target="_blank" rel="noreferrer">
+                            <i className="fa fa-twitter fa-lg"></i>
+                          </a>
+                          <a href="">
+                            <i className="fa fa-envelope fa-lg"></i>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+
+                    <Link to={`/item-details/`} className="newItems__skeleton--image">
+                      
+                    </Link>
+                  </div>
+                  <div className="nft__item_info">
+                    <Link to={`/item-details/`} className="newItems__skeleton--title">
+                    </Link>
+                    <div className="nft__item_price newItems__skeleton--counts"></div>
+                    <div className="nft__item_like newItems__skeleton--counts">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )})
+        }
+        </Slider>
+          </div>
         </div>
       </div>
     </section>

@@ -1,32 +1,13 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import Countdown from '../home/Countdown'
 import AuthorImage from "../../images/author_thumbnail.jpg";
 import nftImage from "../../images/nftImage.jpg";
 
 const NewItems = (props) => {
 
-  let remainingTime;
+  //const [remainingTime, setRemainingTime] = useState(0);
 
-  let frame = requestAnimationFrame(getTime);
-  
-  let timeElement = document.querySelector(".de_countdown");
-
-  function getTime(item){
-    console.log(item.title);
-    remainingTime = item.expiryDate - Date.now();
-    if(!timeElement){
-      try{
-        timeElement = document.querySelector(".de_countdown")
-        timeElement.innerHTML = remainingTime;
-      }
-      catch(e){
-        console.log("Time element not yet loaded");
-      }
-    }
-    
-    //console.log(remainingTime);
-    requestAnimationFrame(getTime);
-  }  
 
   return (
     <section id="section-items" className="no-bottom">
@@ -38,7 +19,9 @@ const NewItems = (props) => {
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
-          {props.newItems.map((newItem, index) => (
+          {props.newItems.map((newItem, index) => {
+
+            return (
             <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
               <div className="nft__item">
                 <div className="author_list_pp">
@@ -52,10 +35,7 @@ const NewItems = (props) => {
                     <i className="fa fa-check"></i>
                   </Link>
                 </div>
-                <div className="de_countdown">
-                  {getTime(newItem)} 
-                  5h 30m 32s
-                </div>
+                <Countdown expiryDate={newItem.expiryDate} className="de_countdown" />
 
                 <div className="nft__item_wrap">
                   <div className="nft__item_extra">
@@ -96,7 +76,7 @@ const NewItems = (props) => {
                 </div>
               </div>
             </div>
-          ))}
+        )})}
         </div>
       </div>
     </section>

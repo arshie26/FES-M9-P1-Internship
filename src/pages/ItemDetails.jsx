@@ -9,7 +9,7 @@ const ItemDetails = (props) => {
   
   const { id } = useParams();
   console.log("id is ", id);
-  console.log("Collections is ", props.collections);
+  console.log("Collections is ", props.allItems);
 
 
 
@@ -19,7 +19,7 @@ const ItemDetails = (props) => {
   useEffect(() => {
   
     setTimeout(() => {
-      props.getCollections();
+      props.getAllItems();
     }, 1000)
     
     window.scrollTo(0, 0);
@@ -33,8 +33,8 @@ const ItemDetails = (props) => {
         <section aria-label="section" className="mt90 sm-mt-0">
           <div className="container">
               {
-                props.collections.length > 0?
-                  props.collections
+                props.allItems.length > 0?
+                  props.allItems
                   .filter((collection) => {
                     console.log(collection.id);
                     console.log(id);

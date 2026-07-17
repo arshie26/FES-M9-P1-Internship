@@ -57,7 +57,7 @@ const HotCollections = (props) => {
           <div className="slider-container">
             <Slider {...settings}>
               
-              {/*
+              {
                 props.collections.length > 0?
                     props.collections.map((collection, index) => {
                       return (
@@ -84,7 +84,7 @@ const HotCollections = (props) => {
                       </div>
                       )
                     })
-                    :*/
+                    :
                     skeleton.map((_, index) => {
                       return (
                         <div className="col" key={index}>

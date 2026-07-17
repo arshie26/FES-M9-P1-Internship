@@ -18,7 +18,7 @@ const Home = (props) => {
         <Landing />
         <LandingIntro />
         <HotCollections collections={props.collections} />
-        <NewItems />
+        <NewItems newItems = {props.newItems} />
         <TopSellers />
         <BrowseByCategory />
       </div>

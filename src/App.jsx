@@ -10,6 +10,8 @@ import { useEffect, useState } from "react";
 function App() {
   
   const [collections, setCollections] = useState([]);
+  const [newItems, setNewItems] = useState([]);
+  const [allItems, setAllItems] = useState([]);
 
   async function getCollections(){
     console.log("Fetching collections");
@@ -19,10 +21,29 @@ function App() {
     setCollections(collectionRequestJSON);
   }
 
+  async function getNewItems(){
+    console.log("Fetching new items");
+    let newItemRequest = await fetch("https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems");
+    let newItemRequestJSON = await newItemRequest.json();
+    //console.log(newItemRequestJSON);
+    setNewItems(newItemRequestJSON);
+  }
+
+  async function getAllItems(){
+    let collectionRequest = await fetch("https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections");
+    let collectionRequestJSON = await collectionRequest.json();
+    let newItemRequest = await fetch("https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems");
+    let newItemRequestJSON = await newItemRequest.json();
+
+    setAllItems(collectionRequestJSON.concat(newItemRequestJSON));
+  }
+
   useEffect(() => {
     setTimeout(() => {
       getCollections();
-    }, 2000);
+    }, 1000);
+
+    getNewItems();
     
   }, [])
   
@@ -30,10 +51,10 @@ function App() {
     <Router>
       <Nav />
       <Routes>
-        <Route path="/" element={<Home collections = {collections} />} />
+        <Route path="/" element={<Home collections = {collections} newItems = {newItems} />} />
         <Route path="/explore" element={<Explore />} />
         <Route path="/author" element={<Author />} />
-        <Route path="/item-details/:id" element={<ItemDetails getCollections = {getCollections} collections = {collections} />} />
+        <Route path="/item-details/:id" element={<ItemDetails getAllItems = {getAllItems} allItems = {allItems} getCollections = {getCollections} getNewItems = {getNewItems} newItems = {newItems} collections = {collections} />} />
       </Routes>
       <Footer />
     </Router>

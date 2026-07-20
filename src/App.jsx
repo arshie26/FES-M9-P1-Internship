@@ -64,7 +64,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home collections = {collections} newItems = {newItems} topSellers={topSellers} />} />
         <Route path="/explore" element={<Explore />} />
-        <Route path="/author" element={<Author />} />
+        <Route path="/author/:id" element={<Author />} />
         <Route path="/item-details/:id" element={<ItemDetails getAllItems = {getAllItems} allItems = {allItems} getCollections = {getCollections} getNewItems = {getNewItems} newItems = {newItems} collections = {collections} />} />
       </Routes>
       <Footer />

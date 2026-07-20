@@ -1,10 +1,18 @@
 import React from "react";
 import AuthorBanner from "../images/author_banner.jpg";
 import AuthorItems from "../components/author/AuthorItems";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import AuthorImage from "../images/author_thumbnail.jpg";
 
 const Author = () => {
+
+  const { id } = useParams();
+
+  async function getAuthor(){
+    let authorRequest = await fetch("https://us-central1-nft-cloud-functions.cloudfunctions.net/topSellers");
+    let authorRequestJSON = await authorRequest.json();
+  }
+
   return (
     <div id="wrapper">
       <div className="no-bottom no-top" id="content">

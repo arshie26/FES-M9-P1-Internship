@@ -7,7 +7,6 @@ const Countdown = (props) => {
 
     const [remainingTime, setRemainingTime] = useState("");
     let timeLeft;
-    
 
     function getTime(){
         if(props.expiryDate){

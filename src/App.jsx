@@ -38,7 +38,10 @@ function App() {
     setTopSellers(sellersRequestJSON);
   }
 
-  async function getAllItems(){
+
+  //DEPRECATED IN FAVOR OF ENDPOINT MADE FOR THIS PURPOSE, PREVIOUSLY USED TO RETRIEVE ITEMS FROM ALL ENDPOINTS
+  /*async function getAllItems(){
+    console.log("Getting all items");
     let collectionRequest = await fetch("https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections");
     let collectionRequestJSON = await collectionRequest.json();
     let exploreRequest = await fetch("https://us-central1-nft-cloud-functions.cloudfunctions.net/explore");
@@ -47,7 +50,7 @@ function App() {
     let newItemRequestJSON = await newItemRequest.json();
 
     setAllItems(collectionRequestJSON.concat(exploreRequestJSON).concat(newItemRequestJSON));
-  }
+  }*/
 
   useEffect(() => {
     setTimeout(() => {
@@ -67,7 +70,7 @@ function App() {
         <Route path="/" element={<Home collections = {collections} newItems = {newItems} topSellers={topSellers} />} />
         <Route path="/explore" element={<Explore />} />
         <Route path="/author/:id" element={<Author />} />
-        <Route path="/item-details/:id" element={<ItemDetails getAllItems = {getAllItems} allItems = {allItems} getCollections = {getCollections} getNewItems = {getNewItems} newItems = {newItems} collections = {collections} />} />
+        <Route path="/item-details/:id" element={<ItemDetails  />} />
       </Routes>
       <Footer />
     </Router>

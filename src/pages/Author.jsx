@@ -5,15 +5,13 @@ import './Author.css'
 import { Link, useParams } from "react-router-dom";
 import AuthorImage from "../images/author_thumbnail.jpg";
 
-const Author = () => {
+const Author = (props) => {
 
   const { id } = useParams();
   const [author, setAuthor] = useState({});
   const [followClick, setFollowClick] = useState(false);
 
   function follow(){
-    //let updatedAuthor = {...author, followers: author.followers + 1}
-    //console.log(updatedAuthor);
     if(followClick){
       setAuthor({...author, followers: author.followers - 1});  
       setFollowClick(false);
@@ -95,7 +93,7 @@ const Author = () => {
 
                 <div className="col-md-12">
                   <div className="de_tab tab_simple">
-                    <AuthorItems nfts={author.nftCollection} />
+                    <AuthorItems author={author} />
                   </div>
                 </div>
               </div>

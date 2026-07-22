@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import AuthorImage from "../../images/author_thumbnail.jpg";
 import NFT from '../home/NFT'
@@ -13,12 +13,12 @@ const AuthorItems = (props) => {
       <div className="tab-1">
         <div className="row">
           
-          {props.nfts.length > 0?
-          props.nfts.map((item) => {
+          {props.author?.nftCollection.length > 0 ?
+          props.author.nftCollection.map((item) => {
             return (
               <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={item.nftId}>
-                <NFT loading={false} authorId={item.authorId} 
-                authorImage={item.authorImage} expiryDate={item.expiryDate} 
+                <NFT loading={false} authorId={props.author.authorId} 
+                authorImage={props.author.authorImage} expiryDate={item.expiryDate} 
                 nftId={item.nftId} nftImage={item.nftImage} price={item.price} likes={item.likes} title={item.title} />
               </div>
           )})

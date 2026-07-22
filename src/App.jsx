@@ -41,10 +41,12 @@ function App() {
   async function getAllItems(){
     let collectionRequest = await fetch("https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections");
     let collectionRequestJSON = await collectionRequest.json();
+    let exploreRequest = await fetch("https://us-central1-nft-cloud-functions.cloudfunctions.net/explore");
+    let exploreRequestJSON = await exploreRequest.json();
     let newItemRequest = await fetch("https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems");
     let newItemRequestJSON = await newItemRequest.json();
 
-    setAllItems(collectionRequestJSON.concat(newItemRequestJSON));
+    setAllItems(collectionRequestJSON.concat(exploreRequestJSON).concat(newItemRequestJSON));
   }
 
   useEffect(() => {

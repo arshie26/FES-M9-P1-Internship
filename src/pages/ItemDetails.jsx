@@ -36,7 +36,7 @@ const ItemDetails = (props) => {
                 props.allItems.length > 0?
                   props.allItems
                   .filter((collection) => {
-                    console.log(collection.id);
+                    console.log(collection.nftId);
                     console.log(id);
                     return collection.nftId == id
                       

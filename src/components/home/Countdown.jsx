@@ -40,8 +40,10 @@ const Countdown = (props) => {
     }
 
     useEffect(() => {
-        setInterval(getTime, 1000);
-    }, [])
+        const intervalId = setInterval(getTime, 1000);
+
+        return () => clearInterval(intervalId);
+    }, [props.expiryDate])
 
     return (
         <>

@@ -5,10 +5,8 @@ import Countdown from '../home/Countdown'
 
 const NFT = (props) => {
     
-    console.log(props.title, props.expiryDate);
-    
     return (
-        !props.loaded?
+        !props.loading?
             <div className="col">
                 <div className="nft__item">
                 <div className="author_list_pp">

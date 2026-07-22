@@ -63,14 +63,14 @@ const NewItems = (props) => {
 
             props.newItems.map((newItem, index) => {
             return (
-            <NFT key={index} loaded={false} authorId={newItem.authorId} 
+            <NFT key={newItem.nftId} loading={false} authorId={newItem.authorId} 
                 authorImage={newItem.authorImage} expiryDate={newItem.expiryDate} 
                 nftId={newItem.nftId} nftImage={newItem.nftImage} title={newItem.title} />
             )})
             :
             skeleton.map((_, index) => {
               return (
-              <NFT key={index} loaded={true}  />
+              <NFT key={index} loading={true}  />
               )})
         }
         </Slider>

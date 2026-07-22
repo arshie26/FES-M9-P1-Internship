@@ -95,7 +95,7 @@ const ExploreItems = (props) => {
           className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
           style={{ display: "block", backgroundSize: "cover" }}
         >
-          <NFT key={index} loading={false} authorId={item.authorId} 
+          <NFT key={item.nftId} loading={false} authorId={item.authorId} 
                 authorImage={item.authorImage} expiryDate={item.expiryDate} 
                 nftId={item.nftId} nftImage={item.nftImage} price={item.price} likes={item.likes} title={item.title} />
 
@@ -110,7 +110,7 @@ const ExploreItems = (props) => {
           className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
           style={{ display: "block", backgroundSize: "cover" }}
         >
-            <NFT key={index} loaded={true} />
+            <NFT key={index} loading={true} />
             </div>   
           )
         })}

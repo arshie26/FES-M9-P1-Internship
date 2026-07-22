@@ -32,7 +32,7 @@ const TopSellers = (props) => {
                         </Link>
                       </div>
                       <div className="author_list_info">
-                        <Link to="/author">{seller.authorName}</Link>
+                        <Link to={`/author/${seller.authorId}`}>{seller.authorName}</Link>
                         <span>{seller.price}</span>
                       </div>
                     </li>

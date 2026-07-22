@@ -1,10 +1,39 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import AuthorBanner from "../images/author_banner.jpg";
 import AuthorItems from "../components/author/AuthorItems";
-import { Link } from "react-router-dom";
+import './Author.css'
+import { Link, useParams } from "react-router-dom";
 import AuthorImage from "../images/author_thumbnail.jpg";
 
-const Author = () => {
+const Author = (props) => {
+
+  const { id } = useParams();
+  const [author, setAuthor] = useState({});
+  const [followClick, setFollowClick] = useState(false);
+
+  function follow(){
+    if(followClick){
+      setAuthor({...author, followers: author.followers - 1});  
+      setFollowClick(false);
+    }
+    else{
+      setAuthor({...author, followers: author.followers + 1});
+      setFollowClick(true);
+    }
+    
+  }
+
+  async function getAuthor(){
+    let authorRequest = await fetch(`https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=${id}`);
+    let authorRequestJSON = await authorRequest.json();
+    console.log(authorRequestJSON);
+    setAuthor(authorRequestJSON);
+  }
+
+  useEffect(() => {
+    getAuthor();
+  }, [])
+
   return (
     <div id="wrapper">
       <div className="no-bottom no-top" id="content">
@@ -20,45 +49,86 @@ const Author = () => {
 
         <section aria-label="section">
           <div className="container">
-            <div className="row">
-              <div className="col-md-12">
-                <div className="d_profile de-flex">
-                  <div className="de-flex-col">
-                    <div className="profile_avatar">
-                      <img src={AuthorImage} alt="" />
+          {
+            Object.keys(author).length > 0?
+              <div className="row">
+                <div className="col-md-12">
+                  <div className="d_profile de-flex">
+                    <div className="de-flex-col">
+                      <div className="profile_avatar">
+                        <img src={author.authorImage} alt="" />
 
-                      <i className="fa fa-check"></i>
-                      <div className="profile_name">
-                        <h4>
-                          Monica Lucas
-                          <span className="profile_username">@monicaaaa</span>
-                          <span id="wallet" className="profile_wallet">
-                            UDHUHWudhwd78wdt7edb32uidbwyuidhg7wUHIFUHWewiqdj87dy7
-                          </span>
-                          <button id="btn_copy" title="Copy Text">
-                            Copy
-                          </button>
-                        </h4>
+                        <i className="fa fa-check"></i>
+                        <div className="profile_name">
+                          <h4>
+                            {author.authorName}
+                            <span className="profile_username">{author.tag}</span>
+                            <span id="wallet" className="profile_wallet">
+                              {author.address}
+                            </span>
+                            <button id="btn_copy" title="Copy Text">
+                              Copy
+                            </button>
+                          </h4>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="profile_follow de-flex">
+                      <div className="de-flex-col">
+                        <div className="profile_follower">{author.followers}</div>
+                        <Link to="#" className="btn-main" onClick={() => {follow();}}>
+                          {followClick?
+                            <>
+                              Unfollow
+                            </>
+                            
+                            :
+                            <>Follow</>
+                          }
+                        </Link>
                       </div>
                     </div>
                   </div>
-                  <div className="profile_follow de-flex">
-                    <div className="de-flex-col">
-                      <div className="profile_follower">573 followers</div>
-                      <Link to="#" className="btn-main">
-                        Follow
-                      </Link>
-                    </div>
+                </div>
+
+                <div className="col-md-12">
+                  <div className="de_tab tab_simple">
+                    <AuthorItems author={author} />
                   </div>
                 </div>
               </div>
-
-              <div className="col-md-12">
-                <div className="de_tab tab_simple">
-                  <AuthorItems />
+              :
+              <div className="row">
+                <div className="col-md-12">
+                  <div className="d_profile de-flex">
+                    <div className="de-flex-col">
+                      <div className="profile_avatar">
+                        <div className="author__skeleton--image"></div>
+                        <i className="fa fa-check"></i>
+                        <div className="author__skeleton--nameContainer">
+                          <div>
+                            <div className="author__skeleton--name"></div>
+                            <span className="profile_username author__skeleton--username"></span>
+                            <span id="wallet" className="profile_wallet author__skeleton--wallet"></span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="profile_follow de-flex">
+                      <div className="de-flex-col author__skeleton--followers">
+                        
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              </div>
+
+                <div className="col-md-12">
+                  <div className="de_tab tab_simple">
+                    <AuthorItems nfts={[]} />
+                  </div>
+                </div> 
             </div>
+          }
           </div>
         </section>
       </div>

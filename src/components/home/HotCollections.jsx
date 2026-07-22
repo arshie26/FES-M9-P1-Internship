@@ -56,8 +56,7 @@ const HotCollections = (props) => {
           </div>
           <div className="slider-container">
             <Slider {...settings}>
-              
-              {/*
+              {
                 props.collections.length > 0?
                     props.collections.map((collection, index) => {
                       return (
@@ -69,7 +68,7 @@ const HotCollections = (props) => {
                             </Link>
                           </div>
                           <div className="nft_coll_pp">
-                            <Link to="/author">
+                            <Link to={`/author/${collection?.authorId}`}>
                               <img className="lazy pp-coll" src={collection?.authorImage} alt="" />
                             </Link>
                             <i className="fa fa-check"></i>
@@ -84,7 +83,7 @@ const HotCollections = (props) => {
                       </div>
                       )
                     })
-                    :*/
+                    :
                     skeleton.map((_, index) => {
                       return (
                         <div className="col" key={index}>

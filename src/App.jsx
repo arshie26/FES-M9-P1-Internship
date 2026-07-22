@@ -10,6 +10,9 @@ import { useEffect, useState } from "react";
 function App() {
   
   const [collections, setCollections] = useState([]);
+  const [newItems, setNewItems] = useState([]);
+  const [topSellers, setTopSellers] = useState([]);
+  const [allItems, setAllItems] = useState([]);
 
   async function getCollections(){
     console.log("Fetching collections");
@@ -19,10 +22,44 @@ function App() {
     setCollections(collectionRequestJSON);
   }
 
+  async function getNewItems(){
+    console.log("Fetching new items");
+    let newItemRequest = await fetch("https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems");
+    let newItemRequestJSON = await newItemRequest.json();
+    //console.log(newItemRequestJSON);
+    setNewItems(newItemRequestJSON);
+  }
+
+  async function getTopSellers(){
+    console.log("Fetching new items");
+    let sellersRequest = await fetch("https://us-central1-nft-cloud-functions.cloudfunctions.net/topSellers");
+    let sellersRequestJSON = await sellersRequest.json();
+    //console.log(newItemRequestJSON);
+    setTopSellers(sellersRequestJSON);
+  }
+
+
+  //DEPRECATED IN FAVOR OF ENDPOINT MADE FOR THIS PURPOSE, PREVIOUSLY USED TO RETRIEVE ITEMS FROM ALL ENDPOINTS
+  /*async function getAllItems(){
+    console.log("Getting all items");
+    let collectionRequest = await fetch("https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections");
+    let collectionRequestJSON = await collectionRequest.json();
+    let exploreRequest = await fetch("https://us-central1-nft-cloud-functions.cloudfunctions.net/explore");
+    let exploreRequestJSON = await exploreRequest.json();
+    let newItemRequest = await fetch("https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems");
+    let newItemRequestJSON = await newItemRequest.json();
+
+    setAllItems(collectionRequestJSON.concat(exploreRequestJSON).concat(newItemRequestJSON));
+  }*/
+
   useEffect(() => {
     setTimeout(() => {
       getCollections();
-    }, 2000);
+      getNewItems();
+      getTopSellers();
+    }, 1000);
+
+    
     
   }, [])
   
@@ -30,10 +67,10 @@ function App() {
     <Router>
       <Nav />
       <Routes>
-        <Route path="/" element={<Home collections = {collections} />} />
+        <Route path="/" element={<Home collections = {collections} newItems = {newItems} topSellers={topSellers} />} />
         <Route path="/explore" element={<Explore />} />
-        <Route path="/author" element={<Author />} />
-        <Route path="/item-details/:id" element={<ItemDetails getCollections = {getCollections} collections = {collections} />} />
+        <Route path="/author/:id" element={<Author />} />
+        <Route path="/item-details/:id" element={<ItemDetails  />} />
       </Routes>
       <Footer />
     </Router>

@@ -34,12 +34,12 @@ const ItemDetails = (props) => {
     getItemDetails();
     
     async function getItemDetails(){
-      let detailsRequest = await fetch(`https://us-central1-nft-cloud-functions.cloudfunctions.net/itemDetails?nftId=${id}`);
-      let detailsRequestJSON = await detailsRequest.json();
-      setDetails(detailsRequestJSON);
+    let detailsRequest = await fetch(`https://us-central1-nft-cloud-functions.cloudfunctions.net/itemDetails?nftId=${id}`);
+    let detailsRequestJSON = await detailsRequest.json();
+    setDetails(detailsRequestJSON);
     }
 
-  }, []);
+  }, [id]);
 
   return (
     <div id="wrapper" data-aos="fade" data-aos-delay="100" data-aos-duration="1000">

@@ -28,13 +28,13 @@ const Author = () => {
     getAuthor();
 
     async function getAuthor(){
-      let authorRequest = await fetch(`https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=${id}`);
-      let authorRequestJSON = await authorRequest.json();
-      console.log(authorRequestJSON);
-      setAuthor(authorRequestJSON);
+    let authorRequest = await fetch(`https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=${id}`);
+    let authorRequestJSON = await authorRequest.json();
+    console.log(authorRequestJSON);
+    setAuthor(authorRequestJSON);
     }
 
-  }, [])
+  }, [id])
 
   return (
     <div id="wrapper">

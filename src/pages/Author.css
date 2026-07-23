@@ -24,6 +24,7 @@
     height: 10px;
     margin-bottom: 10px;
     background-color: lightgray;
+    display: inherit;
 }
 
 .author__skeleton--wallet{

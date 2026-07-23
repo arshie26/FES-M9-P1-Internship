@@ -7,7 +7,7 @@ const NFT = (props) => {
     
     return (
         !props.loading?
-            <div className="col">
+            <div data-aos="fade" data-aos-delay="100" data-aos-duration="1000" className="col">
                 <div className="nft__item">
                 <div className="author_list_pp">
                     <Link
@@ -96,15 +96,15 @@ const NFT = (props) => {
                         </div>
                     </div>
 
-                    <Link to={`/item-details/`} className="newItems__skeleton--image">
+                    <Link to={`/item-details/`} className="newItems__skeleton--image skeleton-box">
                         
                     </Link>
                     </div>
                     <div className="nft__item_info">
-                    <Link to={`/item-details/`} className="newItems__skeleton--title">
+                    <Link to={`/item-details/`} className="newItems__skeleton--title skeleton-box">
                     </Link>
-                    <div className="nft__item_price newItems__skeleton--counts"></div>
-                    <div className="nft__item_like newItems__skeleton--counts">
+                    <div className="nft__item_price newItems__skeleton--counts skeleton-box"></div>
+                    <div className="nft__item_like newItems__skeleton--counts skeleton-box">
                     </div>
                     </div>
                 </div>

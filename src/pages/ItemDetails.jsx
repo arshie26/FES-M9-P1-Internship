@@ -10,11 +10,7 @@ const ItemDetails = (props) => {
 
   console.log("id is ", id);
 
-  async function getItemDetails(){
-    let detailsRequest = await fetch(`https://us-central1-nft-cloud-functions.cloudfunctions.net/itemDetails?nftId=${id}`);
-    let detailsRequestJSON = await detailsRequest.json();
-    setDetails(detailsRequestJSON);
-  }
+  
 
   /*props.allItems.length > 0?
     props.allItems
@@ -37,6 +33,12 @@ const ItemDetails = (props) => {
   
     getItemDetails();
     
+    async function getItemDetails(){
+      let detailsRequest = await fetch(`https://us-central1-nft-cloud-functions.cloudfunctions.net/itemDetails?nftId=${id}`);
+      let detailsRequestJSON = await detailsRequest.json();
+      setDetails(detailsRequestJSON);
+    }
+
   }, []);
 
   return (

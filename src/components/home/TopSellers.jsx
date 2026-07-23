@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import './TopSellers.css'
-import AuthorImage from "../../images/author_thumbnail.jpg";
 
 const TopSellers = (props) => {
   return (

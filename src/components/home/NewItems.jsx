@@ -1,10 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import Countdown from '../home/Countdown'
 import NFT from './NFT.jsx'
-import NFTSkelton from "./NFTSkeleton.jsx";
-import AuthorImage from "../../images/author_thumbnail.jpg";
-import nftImage from "../../images/nftImage.jpg";
 import './NewItems.css'
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -29,7 +24,7 @@ const NewItems = (props) => {
     return (
       <div
         className={className}
-        style={{ ...style, display: "block", color: "#727272" }}
+        style={{ ...style, backgroundColor: "black", borderRadius: "50%" }}
         onClick={onClick}
       />
     );
@@ -40,7 +35,7 @@ const NewItems = (props) => {
     return (
       <div
         className={className}
-        style={{ ...style, display: "block", color: "#727272" }}
+        style={{ ...style, backgroundColor: "black", borderRadius: "50%" }}
         onClick={onClick}
       />
     );

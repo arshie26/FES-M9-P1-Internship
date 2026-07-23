@@ -1,8 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import './HotCollections.css'
-import AuthorImage from "../../images/author_thumbnail.jpg";
-import nftImage from "../../images/nftImage.jpg";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -22,12 +20,12 @@ const HotCollections = (props) => {
 
   const skeleton = Array(4).fill(null);
 
-  function SampleNextArrow(props) {
+  function SampleNextArrow (props) {
     const { className, style, onClick } = props;
     return (
       <div
         className={className}
-        style={{ ...style, display: "block", color: "#727272" }}
+        style={{ ...style, backgroundColor: "black", borderRadius: "50%" }}
         onClick={onClick}
       />
     );
@@ -38,7 +36,7 @@ const HotCollections = (props) => {
     return (
       <div
         className={className}
-        style={{ ...style, display: "block", color: "#727272" }}
+        style={{ ...style, backgroundColor: "black", borderRadius: "50%" }}
         onClick={onClick}
       />
     );

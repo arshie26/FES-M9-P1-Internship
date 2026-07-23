@@ -6,7 +6,6 @@ import { useState } from 'react';
 const Countdown = (props) => {
 
     const [remainingTime, setRemainingTime] = useState("");
-    let timeLeft;
 
     /*function getTime(){
         if(props.expiryDate){
@@ -43,7 +42,7 @@ const Countdown = (props) => {
         const intervalId = setInterval(() => {
             if(props.expiryDate){
 
-            timeLeft = props.expiryDate - Date.now();
+            let timeLeft = props.expiryDate - Date.now();
             
             let milli = timeLeft % 1000;
             let sec = Math.floor(timeLeft/1000)%60;

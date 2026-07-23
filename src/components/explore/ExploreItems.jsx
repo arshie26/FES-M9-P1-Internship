@@ -28,7 +28,7 @@ const ExploreItems = (props) => {
     displayLength += 4;
     console.log(displayLength);
     setItems(allItems.slice(0, displayLength));
-    if(filter != ""){
+    if(filter !== ""){
       console.log(allItems.slice(0, displayLength));
       sortNFTs(filter, allItems.slice(0, displayLength));
     }

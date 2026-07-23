@@ -1,8 +1,5 @@
-import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
-import AuthorImage from "../../images/author_thumbnail.jpg";
+import React from "react";
 import NFT from '../home/NFT'
-import nftImage from "../../images/nftImage.jpg";
 
 const AuthorItems = (props) => {
   

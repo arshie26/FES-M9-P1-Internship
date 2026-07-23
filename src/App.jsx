@@ -13,7 +13,6 @@ function App() {
   const [collections, setCollections] = useState([]);
   const [newItems, setNewItems] = useState([]);
   const [topSellers, setTopSellers] = useState([]);
-  const [allItems, setAllItems] = useState([]);
 
   AOS.init();
 

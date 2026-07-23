@@ -4,7 +4,7 @@ import AuthorItems from "../components/author/AuthorItems";
 import './Author.css'
 import { Link, useParams } from "react-router-dom";
 
-const Author = (props) => {
+const Author = () => {
 
   const { id } = useParams();
   const [author, setAuthor] = useState({});

@@ -4,7 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import './ItemDetails.css'
 
 const ItemDetails = (props) => {
-  
+
   const { id } = useParams();
   const [details, setDetails] = useState({});
 
@@ -35,7 +35,6 @@ const ItemDetails = (props) => {
   
   useEffect(() => {
   
-    window.scrollTo(0, 0);
     getItemDetails();
     
   }, []);

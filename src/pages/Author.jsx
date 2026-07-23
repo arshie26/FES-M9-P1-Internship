@@ -30,10 +30,7 @@ const Author = () => {
   }
 
   useEffect(() => {
-    setTimeout(() => {
-
-      getAuthor();
-    }, 1000)
+    getAuthor();
   }, [])
 
   return (

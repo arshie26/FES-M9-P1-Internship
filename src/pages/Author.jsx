@@ -31,7 +31,10 @@ const Author = (props) => {
   }
 
   useEffect(() => {
-    getAuthor();
+    setTimeout(() => {
+
+      getAuthor();
+    }, 1000)
   }, [])
 
   return (
@@ -103,19 +106,19 @@ const Author = (props) => {
                   <div className="d_profile de-flex">
                     <div className="de-flex-col">
                       <div className="profile_avatar">
-                        <div className="author__skeleton--image"></div>
+                        <div className="author__skeleton--image skeleton-box"></div>
                         <i className="fa fa-check"></i>
                         <div className="author__skeleton--nameContainer">
                           <div>
-                            <div className="author__skeleton--name"></div>
-                            <span className="profile_username author__skeleton--username"></span>
-                            <span id="wallet" className="profile_wallet author__skeleton--wallet"></span>
+                            <div className="author__skeleton--name skeleton-box"></div>
+                            <span className="profile_username author__skeleton--username skeleton-box"></span>
+                            <span id="wallet" className="profile_wallet author__skeleton--wallet skeleton-box"></span>
                           </div>
                         </div>
                       </div>
                     </div>
                     <div className="profile_follow de-flex">
-                      <div className="de-flex-col author__skeleton--followers">
+                      <div className="de-flex-col author__skeleton--followers skeleton-box">
                         
                       </div>
                     </div>

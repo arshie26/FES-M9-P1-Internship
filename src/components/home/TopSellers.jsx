@@ -5,7 +5,7 @@ import AuthorImage from "../../images/author_thumbnail.jpg";
 
 const TopSellers = (props) => {
   return (
-    <section id="section-popular" className="pb-5">
+    <section id="section-popular" className="pb-5" data-aos="fade" data-aos-delay="1000" data-aos-duration="1000">
       <div className="container">
         <div className="row">
           <div className="col-lg-12">

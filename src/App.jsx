@@ -5,6 +5,7 @@ import Author from "./pages/Author";
 import ItemDetails from "./pages/ItemDetails";
 import Nav from "./components/Nav";
 import Footer from "./components/Footer";
+import AOS from 'aos'
 import { useEffect, useState } from "react";
 
 function App() {
@@ -13,6 +14,8 @@ function App() {
   const [newItems, setNewItems] = useState([]);
   const [topSellers, setTopSellers] = useState([]);
   const [allItems, setAllItems] = useState([]);
+
+  AOS.init();
 
   async function getCollections(){
     console.log("Fetching collections");

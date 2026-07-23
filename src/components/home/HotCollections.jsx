@@ -45,7 +45,7 @@ const HotCollections = (props) => {
   }  
 
   return (
-    <section id="section-collections" className="no-bottom">
+    <section id="section-collections" data-aos="fade" data-aos-delay="1000" data-aos-duration="1000" className="no-bottom">
       <div className="container">
         <div className="row">
           <div className="col-lg-12">

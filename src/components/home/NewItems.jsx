@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import NFT from './NFT.jsx'
 import './NewItems.css'
 import Slider from "react-slick";
